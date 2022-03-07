@@ -1,6 +1,8 @@
 # FTPutility 
 FTPutility is a tool written by me to simple interact with a FTP-server in a 'Linux-Like-Environment' where I also tried to make a visually appearing TUI (Hope that worked!).
 
+Please note that this tool was written for Linux! It propably wont work in Windows!
+
 The tool isn't great, it's only written by me to learn programming!
 
 ## Installation 💿
