@@ -1,7 +1,9 @@
 from ftplib import FTP_TLS
+import ftplib
 from colorama import Fore, Back, init
 import pwinput
 import sys, os, io
+import download_dir
 
 init(autoreset=True)
 
@@ -53,13 +55,18 @@ def main(ftp):
             ftp.delete(f"{CURR_PATH}/{command.split(' ')[1]}")
 
         elif command == "get" or command == "download":
+            print(f"NOTE: This selection will be automated in near future!")
+            filetype = input(f"{Fore.BLUE}Filetype: [F]ile / [D]irectory > ")
             server_file = input(f"{Fore.BLUE}Server file > ")
             local_file = input(f"{Fore.BLUE}Local file > ")
 
-            print(f"{Fore.YELLOW}Downloading...")
-            ftp.retrbinary("RETR " + server_file, open(local_file, "wb").write)
-            deleteLast()
-            print(f"{Fore.GREEN}File downloaded!")
+            if filetype.upper() == "D":
+                download_dir.download_ftp_tree(ftp, server_file, local_file)
+            else:
+                print(f"{Fore.YELLOW}Downloading...")
+                ftp.retrbinary("RETR " + server_file, open(local_file, "wb").write)
+                deleteLast()
+                print(f"{Fore.GREEN}File downloaded!")
 
         elif command == "upload":
             localfile = input(f"{Fore.BLUE}Local source file > ")
@@ -110,8 +117,7 @@ if __name__ == "__main__":
 
         try:
             main(ftp)
-        except Exception:
-            pass
+
         except KeyboardInterrupt:
             print(f"{Fore.YELLOW}\nQuitting...")
             ftp.quit()
