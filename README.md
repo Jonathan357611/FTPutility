@@ -27,3 +27,5 @@ type ```help``` to see all commands on the go.
   
 ## Notes 🗒️
 Any contributions are very welcome so that I can learn more!
+
+I formated my program using black, huge thanks for that handy tool :)
