@@ -56,6 +56,7 @@ def main(ftp):
             server_file = input(f"{Fore.BLUE}Server file > ")
             local_file = input(f"{Fore.BLUE}Local file > ")
 
+            print(f"{Fore.YELLOW}Downloading...")
             ftp.retrbinary("RETR " + server_file, open(local_file, "wb").write)
             deleteLast()
             print(f"{Fore.GREEN}File downloaded!")
